@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>register</title>
 </head>
 
 <body>
-  <form action="/login" method="post">
+  <form action="/register" method="post">
+    <div class="con">
+      <label for="name">name</label>
+      <input type="text" name="name">
+    </div>
     <div class="con">
       <label for="username">username</label>
       <input type="text" name="username">
@@ -18,9 +22,9 @@
       <input type="password" name="password">
     </div>
     <div class="con">
-      <button type="submit">log in</button>
+      <button type="submit">register</button>
     </div>
-    <a href="/register">register</a>
+    <a href="/login">log in</a>
   </form>
 </body>
 

@@ -1,19 +1,15 @@
 const express = require('express')
 const loginController = require('../controllers/loginController')
+const indexController = require('../controllers/indexController')
+const registerController = require('../controllers/registerController')
 
 
 let router = express.Router()
 
 let initWebRoutes = (app) => {
-    router.get('/', (req, res) => {
-        return res.send('<h1>hello world</h1>')
-    })
+    router.get('/', indexController.getIndexPage)
     router.get('/login', loginController.getLoginPage)
+    router.get('/register', registerController.getRegisterPage)
     return app.use("/", router)
 }
-
-router.get('/', (req, res) => {
-    console.log('initwebroutes')
-    res.send('<h1>hello world</h1>')
-})
 module.exports = initWebRoutes
