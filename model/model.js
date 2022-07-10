@@ -6,5 +6,15 @@ module.exports = {
             if (err) throw err
             return d(data)
         })
+    },
+    doesUserExist: (username, callback)=>{
+        let q = `SELECT email FROM users WHERE email = '${username}'`
+        db.query(q, (err, data)=>{
+            if (err) {
+                console.log(err)
+            }
+            console.log(data)
+            return callback(data.length != 0)
+        })
     }
 }

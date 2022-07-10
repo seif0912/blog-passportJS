@@ -10,6 +10,9 @@ let initWebRoutes = (app) => {
     router.get('/', indexController.getIndexPage)
     router.get('/login', loginController.getLoginPage)
     router.get('/register', registerController.getRegisterPage)
+
+
+    router.post('/register', registerController.register)
     return app.use("/", router)
 }
 module.exports = initWebRoutes

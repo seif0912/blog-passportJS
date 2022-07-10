@@ -5,7 +5,7 @@ const model = require('../model/model')
 
 let getIndexPage = (req, res) => {
     model.getall((data) => {
-        console.log(data)
+        // console.log(data)
         return res.render('index', {data})
     })
 }
