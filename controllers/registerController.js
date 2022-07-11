@@ -1,5 +1,6 @@
 const db = require('../database')
 const model = require('../model/model')
+const bcrypt = require('bcrypt')
 
 
 let getRegisterPage = (req, res) => {
@@ -8,17 +9,16 @@ let getRegisterPage = (req, res) => {
 
 
 let register = (req, res) => {
-
-    let un = req.body.username
-    console.log(un)
-    model.doesUserExist(un, (exist) => {
+    model.doesUserExist(req.body.username, (exist) => {
         if(exist){
             res.statusCode = 409
             res.render('register', {exist})
+            return
         }
+        model.createNewUser(req.body, (e)=>{
+            return res.redirect('/login')
+        })
     })
-    console.log('register!')
-    // res.redirect('/')
 }
 
 module.exports = {
