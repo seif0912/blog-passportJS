@@ -1,6 +1,7 @@
 const db = require('../database')
 const model = require('../model/model')
 const bcrypt = require('bcrypt')
+const validator = require('express-validator')
 
 
 let getRegisterPage = (req, res) => {
