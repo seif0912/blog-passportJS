@@ -10,7 +10,7 @@ initPassportLocal();
 let router = express.Router()
 
 let initWebRoutes = (app) => {
-    router.get('/', indexController.getIndexPage)
+    router.get('/', loginController.checkLoggedIn, indexController.getIndexPage)
     router.get('/login', loginController.checkLoggedOut, loginController.getLoginPage)
     router.get('/register', registerController.getRegisterPage)
 
@@ -22,6 +22,7 @@ let initWebRoutes = (app) => {
         successFlash: true,
         failureFlash: true
     }))
+    router.post("/logout", loginController.postLogOut);
     return app.use("/", router)
 }
 module.exports = initWebRoutes

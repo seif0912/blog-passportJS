@@ -8,12 +8,12 @@
 </head>
 
 <body>
-  <h1>hello world</h1>
-  <a href="/register">register</a><br>
-  <a href="/login">login</a>
-  <pre>
-
-  </pre>
+  <h1><%= user.name %> </h1>
+  <!-- <a href="/register">register</a><br>
+  <a href="/login">login</a> -->
+  <form method="POST" action="/logout">
+    <button type="submit" class="btn btn-primary">Log out</button>
+  </form>
 </body>
 
 </html>
