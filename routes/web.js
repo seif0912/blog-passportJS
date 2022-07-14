@@ -11,7 +11,7 @@ let router = express.Router()
 
 let initWebRoutes = (app) => {
     router.get('/', indexController.getIndexPage)
-    router.get('/login', loginController.getLoginPage)
+    router.get('/login', loginController.checkLoggedOut, loginController.getLoginPage)
     router.get('/register', registerController.getRegisterPage)
 
 

@@ -2,7 +2,9 @@ const validationResult = require('express-validator').validationResult
 const loginService = require('../services/loginservice')
 
 let getLoginPage = (req, res) => {
-    return res.render('login')
+    return res.render('login', {
+        errors: req.flash("errors")
+    })
 }
 
 let handleLogin = async (req, res) => {
