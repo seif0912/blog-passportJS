@@ -8,6 +8,13 @@
 </head>
 
 <body>
+  <% if(errors != "") { %>
+  <% errors.forEach((item) => { %>
+  <div class="alert alert-danger">
+    <%- item %>
+  </div>
+  <% }); %>
+  <% } %>
   <form action="/login" method="post">
     <div class="con">
       <label for="email">email</label>
