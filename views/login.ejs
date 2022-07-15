@@ -4,14 +4,14 @@
   <div class="container">
     <% if(errors != "") { %>
     <% errors.forEach((item) => { %>
-    <div class="alert alert-danger">
+    <div class="alert">
       <%- item %>
     </div>
     <% }); %>
     <% } %>
     <form action="/login" method="post">
       <div class="con">
-        <input type="text" name="email" placeholder="Email">
+        <input type="email" name="email" placeholder="Email">
       </div>
       <div class="con">
         <input type="password" name="password" placeholder="Password">

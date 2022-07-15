@@ -1,34 +1,29 @@
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>register</title>
-</head>
+<%- include('components/head.ejs', {page: 'register', cssSource: './css/register.css'}); %>
 
 <body>
-  <% if(exist){ %>
-  <p style="color: red">username exists</p>
-  <% } %>
-  <form action="/register" method="post">
-    <div class="con">
-      <label for="name">name</label>
-      <input type="text" name="name" required>
+  <div class="container">
+    <% if(exist) { %>
+    <div class="alert">
+      email already exist
     </div>
-    <div class="con">
-      <label for="username">username</label>
-      <input type="text" name="username" required>
-    </div>
-    <div class="con">
-      <label for="password">password</label>
-      <input type="password" name="password" required>
-    </div>
-    <div class="con">
-      <button type="submit">register</button>
-    </div>
-    <a href="/login">log in</a>
-  </form>
+    <% } %>
+    <form action="/register" method="post">
+      <div class="con">
+        <input type="text" name="name" placeholder="Name">
+      </div>
+      <div class="con">
+        <input type="email" name="email" placeholder="Email">
+      </div>
+      <div class="con">
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <div class="con">
+        <button type="submit">register</button>
+      </div>
+      <a href="/login">log in</a>
+    </form>
+
+  </div>
 </body>
 
 </html>

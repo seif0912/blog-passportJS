@@ -9,7 +9,7 @@ let getRegisterPage = (req, res) => {
 
 
 let register = (req, res) => {
-    model.doesUserExist(req.body.username, (exist) => {
+    model.doesUserExist(req.body.email, (exist) => {
         if(exist){
             res.statusCode = 409
             res.render('register', {exist})

@@ -1,0 +1,105 @@
+/* Start Global rules */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "cairo", sans-serif;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* end Global rules */
+
+/* log in */
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../imgs/simon-daniel-fy6Gr1goL60-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.container{
+    background-color: rgba(50, 50, 50, 0.85);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.container form input{
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: #f1f1f1;
+    color: black;
+    width: 100%;
+}
+
+.container form input:focus{
+    outline: none;
+    background-color: #fafafa;
+}
+
+.container form button{
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+
+.container form a {
+    text-align: center;
+    display: block;
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+    text-decoration: underline;
+}
+
+@media (max-width: 500px){
+    .container{
+        width: 100%;
+    }
+}
+
+.alert{
+    background-color: rgb(138, 8, 8);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* log in | end */
