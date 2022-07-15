@@ -1,34 +1,28 @@
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>log in</title>
-</head>
+<%- include('components/head.ejs', {page: 'log in', cssSource: './css/login.css'}); %>
 
 <body>
-  <% if(errors != "") { %>
-  <% errors.forEach((item) => { %>
-  <div class="alert alert-danger">
-    <%- item %>
+  <div class="container">
+    <% if(errors != "") { %>
+    <% errors.forEach((item) => { %>
+    <div class="alert alert-danger">
+      <%- item %>
+    </div>
+    <% }); %>
+    <% } %>
+    <form action="/login" method="post">
+      <div class="con">
+        <input type="text" name="email" placeholder="Email">
+      </div>
+      <div class="con">
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <div class="con">
+        <button type="submit">log in</button>
+      </div>
+      <a href="/register">register</a>
+    </form>
+
   </div>
-  <% }); %>
-  <% } %>
-  <form action="/login" method="post">
-    <div class="con">
-      <label for="email">email</label>
-      <input type="text" name="email">
-    </div>
-    <div class="con">
-      <label for="password">password</label>
-      <input type="password" name="password">
-    </div>
-    <div class="con">
-      <button type="submit">log in</button>
-    </div>
-    <a href="/register">register</a>
-  </form>
 </body>
 
 </html>
