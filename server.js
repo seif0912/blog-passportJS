@@ -2,9 +2,7 @@
 const express = require('express')
 const app = express()
 const initWebRoutes = require('./routes/web')
-const initializePassport = require('./config/passportConfig')
 const passport = require('passport')
-const flash = require('express-flash')
 const session = require('express-session')
 const connectFlash = require('connect-flash')
 const cookieParser = require('cookie-parser')
@@ -25,7 +23,7 @@ app.use(session({
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.set('view engine', 'ejs')
-
+app.use(express.static('public'));
 
 
 app.use(connectFlash());

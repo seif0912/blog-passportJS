@@ -1,12 +1,18 @@
 const db = require('../database')
 const model = require('../model/model')
-
+const loginController = require('../controllers/loginController')
 
 
 let getIndexPage = (req, res) => {
-    model.getall((data) => {
-        // console.log(data)
-        return res.render('index', {user: req.user})
+    posts = model.getAllPosts( posts => {
+        // console.log(posts)
+        return res.render('index', {
+            isLoggedIn: req.isLoggedIn,
+            h: 'hello',
+            posts
+        })
+
+        
     })
 }
 

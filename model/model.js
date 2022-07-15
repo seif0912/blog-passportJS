@@ -1,8 +1,15 @@
 const db = require('../database')
 const bcrypt = require('bcrypt')
 module.exports = {
-    getall: (d)=>{
+    getAllUsers: (d)=>{
         let q = 'SELECT * FROM users'
+        db.query(q, (err, data) => {
+            if (err) throw err
+            return d(data)
+        })
+    },
+    getAllPosts: (d) => {
+        let q = 'SELECT * FROM posts'
         db.query(q, (err, data) => {
             if (err) throw err
             return d(data)

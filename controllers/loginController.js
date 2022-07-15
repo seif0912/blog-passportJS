@@ -35,6 +35,11 @@ let checkLoggedIn = (req, res, next) => {
     next();
 };
 
+let isLoggedIn = (req, res, next) => {
+    req.isLoggedIn = req.isAuthenticated()
+    next();
+};
+
 let checkLoggedOut = (req, res, next) => {
     if (req.isAuthenticated()) {
         return res.redirect("/");
@@ -44,7 +49,7 @@ let checkLoggedOut = (req, res, next) => {
 
 let postLogOut = (req, res) => {
     req.session.destroy(function(err) {
-        return res.redirect("/login");
+        return res.redirect("/");
     });
 };
 
@@ -53,5 +58,6 @@ module.exports = {
     handleLogin: handleLogin,
     checkLoggedIn: checkLoggedIn,
     checkLoggedOut: checkLoggedOut,
+    isLoggedIn: isLoggedIn,
     postLogOut: postLogOut
 };

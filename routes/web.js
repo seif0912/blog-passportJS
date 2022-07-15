@@ -10,9 +10,9 @@ initPassportLocal();
 let router = express.Router()
 
 let initWebRoutes = (app) => {
-    router.get('/', loginController.checkLoggedIn, indexController.getIndexPage)
+    router.get('/', loginController.isLoggedIn, indexController.getIndexPage)
     router.get('/login', loginController.checkLoggedOut, loginController.getLoginPage)
-    router.get('/register', registerController.getRegisterPage)
+    router.get('/register',loginController.checkLoggedOut, registerController.getRegisterPage)
 
 
     router.post('/register', registerController.register)
