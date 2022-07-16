@@ -1,18 +1,25 @@
-<h1>write</h1>
-<h4><%= id %> </h4>
-<a href="/">home</a>
+<%- include('components/head.ejs', {page: 'write', cssSource: './css/write.css'}); %>
 
-<form action="/write" method="POST">
-  <div class="col">
-    <label for="title">title</label>
-    <input type="text" name="title">
-  </div>
-  <div class="col">
-    <label for="text">text</label>
-    <textarea name="body" cols="30" rows="10"></textarea>
-  </div>
-  <div class="col">
-    <button type="submit">publish</button>
+<body>
+
+  <%- include('components/header.ejs', {isLoggedIn: true}); %>
+
+  <div class="write-container">
+    <div class="box">
+      <form action="/write" method="POST">
+        <div class="col">
+          <input type="text" name="title" placeholder="title" required>
+        </div>
+        <div class="col">
+          <textarea name="body" placeholder="what's on your mind, <%= name %>?" required></textarea>
+        </div>
+        <div class="col">
+          <button type="submit">publish</button>
+        </div>
+      </form>
+    </div>
   </div>
 
-</form>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 const model = require('../model/model')
 
 let getWritePage = (req, res) => {
-    return res.render('write', {id: req.email})
+    return res.render('write', {name: req.user.name})
 }
 
 let write = (req, res) => {
