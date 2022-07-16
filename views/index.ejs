@@ -2,15 +2,17 @@
 
 <body>
   <%- include('components/header.ejs', {isLoggedIn}); %>
-  <%- include('components/hero.ejs' )%>
-
-  <div class="posts">
-    <% posts.forEach(post => { %>
-    <div class="post">
-      <h3 class="title"><%= post.title %> </h3>
-      <p class="body"><%= post.body %> </p>
+  <%- include('components/hero.ejs', {isLoggedIn} )%>
+  <div class="container">
+    <div class="posts">
+      <% posts.forEach(post => { %>
+      <div class="post">
+        <h3 class="title"><%= post.title %> </h3>
+        <p class="body"><%= post.body %> </p>
+      </div>
+      <% }) %>
     </div>
-    <% }) %>
+
   </div>
 </body>
 

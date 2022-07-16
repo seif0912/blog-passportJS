@@ -1,9 +1,15 @@
 <div class="hero">
   <div class="container">
     <div class="box">
+      <% if(isLoggedIn){ %>
+      <h1>Stay creative</h1>
+      <p>Write stories, thinking, and expertise on any topic you're into.</p>
+      <a href="/write" class="btn-primary">Start writing</a>
+      <% }else{ %>
       <h1>Stay curious</h1>
       <p>Discover stories, thinking, and expertise from writers on any topic.</p>
       <a href="/register" class="btn-primary">Start reading</a>
+      <% } %>
     </div>
   </div>
 </div>
