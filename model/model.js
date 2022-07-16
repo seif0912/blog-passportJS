@@ -38,5 +38,13 @@ module.exports = {
         } catch (err) {
             console.error(err)
         }
+    },
+    write: (data, callback) => {
+        let q = 'INSERT INTO posts(user_id, title, body) VALUES(?,?,?)'
+        // console.log(data, '====')
+        db.query(q, [data.id, data.title, data.body], (err)=>{
+            if (err) throw err
+            return callback(data)
+        })
     }
 }
