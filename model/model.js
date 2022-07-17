@@ -61,7 +61,7 @@ module.exports = {
             const hashedPass = await bcrypt.hash(data.password, 10)
             let q = 'INSERT INTO users(email, password, name) VALUES(?,?,?)'
             // console.log(data, '====')
-            db.query(q, [data.username, hashedPass, data.name], (err)=>{
+            db.query(q, [data.email, hashedPass, data.name], (err)=>{
                 if (err) throw err
                 return callback(data)
             })
