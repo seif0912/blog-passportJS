@@ -33,6 +33,19 @@ module.exports = {
             return callback(data)
         })
     },
+    getProfilePosts: (id, callback) => {
+        let q = `
+        SELECT p.post_id, p.title, p.body, p.shared_at, p.likes
+        FROM posts AS p
+        LEFT JOIN users as u
+        ON (u.id = p.user_id)
+        WHERE u.id = ?
+        ORDER BY p.shared_at DESC`
+        db.query(q, [id],(err, data) => {
+            if (err) throw err
+            return callback(data)
+        })
+    },
     doesUserExist: (username, callback)=>{
         let q = `SELECT email FROM users WHERE email = '${username}'`
         db.query(q, (err, data)=>{
@@ -61,6 +74,19 @@ module.exports = {
         let q = 'INSERT INTO posts(user_id, title, body) VALUES(?,?,?)'
         // console.log(data, '====')
         db.query(q, [data.id, data.title, data.body], (err)=>{
+            if (err) throw err
+            return callback(data)
+        })
+    },
+    getProfile: (id, callback) => {
+        let q = `
+        SELECT u.name, count(p.post_id) AS total_posts, sum(p.likes) AS total_likes
+        FROM posts AS p
+        LEFT JOIN users as u
+        ON (u.id = p.user_id)
+        WHERE u.id = ?
+        `
+        db.query(q, [id],(err, data) => {
             if (err) throw err
             return callback(data)
         })

@@ -1,0 +1,34 @@
+<%- include('components/head.ejs', {page: 'profile', cssSource: '../css/style.css'}); %>
+
+<body>
+  <%- include('components/header.ejs', {isLoggedIn, userId}); %>
+  <div class="hero">
+    <div class="container">
+      <div class="box">
+        <h1><%= profileData.name %></h1>
+        <p>total posts: <%= profileData.total_posts %> </p>
+        <p>total likes: <%= profileData.total_likes %> </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <% posts.forEach(post => { %>
+    <div class="post">
+      <div class="col">
+        <h3 class="title"><%= post.title %> </h3>
+        <% if(post.likes === 1){ %>
+        <h4><%= post.likes %> like</h4>
+        <% }else if (post.likes === 0){ %>
+        <h4>No likes yet</h4>
+        <% }else{ %>
+        <h4><%= post.likes %> likes</h4>
+        <% } %>
+      </div>
+      <p class="body"><%= post.body %> </p>
+      <a href="/post/<%= post.post_id %>" class="btn-primary">read more</a>
+    </div>
+    <% }) %>
+  </div>
+</body>
+
+</html>
