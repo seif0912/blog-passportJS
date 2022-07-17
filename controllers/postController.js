@@ -1,7 +1,11 @@
-
+const model = require('../model/model');
 
 const getPost = (req, res) => {
-    return res.render('post', {isLoggedIn: req.isLoggedIn})
+    model.getPost(req.params.id, post => {
+        post[0].body = post[0].body.split('\r\n')
+        // console.log(req.isLoggedIn)
+        return res.render('post', {isLoggedIn: req.isLoggedIn, post: post[0] })
+    })
 }
 
 module.exports = {

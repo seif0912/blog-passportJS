@@ -6,16 +6,14 @@
 
   <div class="write-container">
     <div class="box">
-      <h2>post</h2>
-      <p class="body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita at deleniti minima? Corrupti illo minus est doloribus necessitatibus nam molestias at maiores, distinctio ad nobis et saepe nihil vitae aliquam!
-      </p>
+      <h2> <%= post.title %> </h2>
+      <% post.body.forEach(line => { %>
+      <p class="body"> <%= line %> </p>
+      <% }) %>
       <div class="info">
         <div class="nd">
-          <h4 class="name">
-            seifseif
-          </h4>
-          <p>11/23/1223</p>
+          <h4 class="name"> <%= post.name %> </h4>
+          <p> <%= post.shared_at %> </p>
         </div>
         <div class="like">
           <form action="/like" method="post">
