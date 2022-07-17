@@ -9,7 +9,12 @@ module.exports = {
         })
     },
     getAllPosts: (d) => {
-        let q = 'SELECT * FROM posts'
+        let q = `
+        SELECT u.name, p.post_id, p.title, p.body, p.shared_at, p.likes
+        FROM posts AS p
+        LEFT JOIN users as u
+        ON (u.id = p.user_id)
+        ORDER BY p.shared_at DESC`
         db.query(q, (err, data) => {
             if (err) throw err
             return d(data)

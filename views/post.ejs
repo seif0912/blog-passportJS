@@ -1,0 +1,31 @@
+<%- include('components/head.ejs', {page: 'post', cssSource: '../css/post.css'}); %>
+
+<body>
+
+  <%- include('components/header.ejs', {isLoggedIn}); %>
+
+  <div class="write-container">
+    <div class="box">
+      <h2>post</h2>
+      <p class="body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita at deleniti minima? Corrupti illo minus est doloribus necessitatibus nam molestias at maiores, distinctio ad nobis et saepe nihil vitae aliquam!
+      </p>
+      <div class="info">
+        <div class="nd">
+          <h4 class="name">
+            seifseif
+          </h4>
+          <p>11/23/1223</p>
+        </div>
+        <div class="like">
+          <form action="/like" method="post">
+            <button class="like">like</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

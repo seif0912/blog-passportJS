@@ -3,12 +3,23 @@
 <body>
   <%- include('components/header.ejs', {isLoggedIn}); %>
   <%- include('components/hero.ejs', {isLoggedIn} )%>
-  <div class="container">
-    <div class="posts">
+  <div class="posts">
+
+    <div class="container">
       <% posts.forEach(post => { %>
       <div class="post">
-        <h3 class="title"><%= post.title %> </h3>
+        <div class="col">
+          <h3 class="title"><%= post.title %> </h3>
+          <% if(post.likes === 1){ %>
+          <h4><%= post.likes %> like</h4>
+          <% }else if (post.likes === 0){ %>
+          <h4>No likes yet</h4>
+          <% }else{ %>
+          <h4><%= post.likes %> likes</h4>
+          <% } %>
+        </div>
         <p class="body"><%= post.body %> </p>
+        <a href="/post/<%= post.post_id %>" class="btn-primary">read more</a>
       </div>
       <% }) %>
     </div>

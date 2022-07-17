@@ -12,7 +12,7 @@ let write = (req, res) => {
     }
     model.write(data, (e)=>{
         if(e){
-            console.log(e)
+            console.log(e,'e')
         }
         res.redirect('/')
     })
