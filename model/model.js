@@ -22,7 +22,7 @@ module.exports = {
     },
     getPost: (id, callback) => {
         let q = `
-        SELECT u.name, p.post_id, p.title, p.body, p.shared_at, p.likes
+        SELECT u.name, u.id, p.post_id, p.title, p.body, p.shared_at, p.likes
         FROM posts AS p
         LEFT JOIN users as u
         ON (u.id = p.user_id)
