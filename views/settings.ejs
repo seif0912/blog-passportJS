@@ -1,2 +1,59 @@
-<h1>settings</h1>
-<a href="/">home</a>
+<%- include('components/head.ejs', {page: 'settings', cssSource: '../../css/settings.css'}); %>
+
+<body>
+
+  <%- include('components/header.ejs', {isLoggedIn: true, userId}); %>
+
+  <div class="write-container">
+    <div class="box">
+      <h1>settings</h1>
+      <div class="more">
+        <div class="title">
+          <p class="active">name</p>
+          <p>password</p>
+          <p>account</p>
+        </div>
+        <div class="info-box">
+          <div class="box-con name active">
+            <form name="change-name">
+              <div class="row">
+                <input type="text" name="name" placeholder="name">
+              </div>
+              <div class="row">
+                <input type="password" name="password" placeholder="password">
+              </div>
+              <div class="row">
+                <button class="btn-primary">submit</button>
+              </div>
+            </form>
+          </div>
+          <div class="box-con password">
+            <form name="change-password">
+              <div class="row">
+                <input type="password" name="name" placeholder="current password">
+              </div>
+              <div class="row">
+                <input type="password" name="password" placeholder="new password">
+              </div>
+              <div class="row">
+                <button class="btn-primary">submit</button>
+              </div>
+            </form>
+          </div>
+          <div class="box-con account">
+            <form name="delete-account">
+              <div class="row">
+                <input type="password" name="password" placeholder="password">
+              </div>
+              <div class="row">
+                <button class="btn-primary">delete account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

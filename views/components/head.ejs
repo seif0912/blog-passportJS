@@ -8,13 +8,22 @@
   <title><%= page %> </title>
 
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/solid.min.css"> -->
+  <% if(page=='settings') { %>
+  <link rel="stylesheet" href="../../fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <link rel="stylesheet" href="<%= cssSource %>">
+  <% }else{ %>
   <link rel="stylesheet" href="../fontawesome/css/all.min.css">
   <link rel="stylesheet" href="../css/header.css">
   <link rel="stylesheet" href="<%= cssSource %>">
+  <% } %>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Rubik+Wet+Paint&display=swap" rel="stylesheet" />
   <% if(['feed', 'write', 'profile'].includes(page)){ %>
   <script src="../js/script.js" defer></script>
+  <% } %>
+  <% if(page== "settings") { %>
+  <script src="../../js/settings.js" defer></script>
   <% } %>
 </head>
