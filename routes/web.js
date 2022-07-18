@@ -5,6 +5,7 @@ const registerController = require('../controllers/registerController')
 const writeController = require('../controllers/writeController')
 const postController = require('../controllers/postController')
 const profileController = require('../controllers/profileController')
+const settingsController = require('../controllers/settingsController')
 const passport = require('passport')
 const initPassportLocal = require("../controllers/passportLocalController")
 
@@ -17,8 +18,10 @@ let initWebRoutes = (app) => {
     router.get('/login', loginController.checkLoggedOut, loginController.getLoginPage)
     router.get('/register',loginController.checkLoggedOut, registerController.getRegisterPage)
     router.get('/write',loginController.checkLoggedIn, writeController.getWritePage)
+    router.get('/not-authorized', (req, res) => res.render('not-authorized'))
     router.get('/post/:id', loginController.isLoggedIn, postController.getPost)
     router.get('/profile/:id', loginController.isLoggedIn, profileController.getProfilePage)
+    router.get('/profile/:id/settings', loginController.checkLoggedIn, loginController.isAuthorized, settingsController.getSettingsPage)
 
 
     router.post('/register', registerController.register)

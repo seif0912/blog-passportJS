@@ -53,11 +53,21 @@ let postLogOut = (req, res) => {
     });
 };
 
+let isAuthorized = (req, res, next) => {
+    console.log(req.user)
+    console.log(req.params)
+    if(req.params.id != req.user.id){
+        return res.redirect('/not-authorized')
+    }
+    next()
+}
+
 module.exports = {
-    getLoginPage: getLoginPage,
-    handleLogin: handleLogin,
-    checkLoggedIn: checkLoggedIn,
-    checkLoggedOut: checkLoggedOut,
-    isLoggedIn: isLoggedIn,
-    postLogOut: postLogOut
+    getLoginPage,
+    handleLogin,
+    checkLoggedIn,
+    checkLoggedOut,
+    isLoggedIn,
+    postLogOut,
+    isAuthorized
 };
