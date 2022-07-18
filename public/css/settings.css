@@ -157,3 +157,21 @@ body{
 .more form .btn-primary:hover {
     background-color: rgb(26, 26, 26);
 }
+
+.failed {
+    text-align: center;
+    background-color: rgb(138, 8, 8);
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.success {
+    text-align: center;
+    background-color: rgb(40, 109, 1);
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+}

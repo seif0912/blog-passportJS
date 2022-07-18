@@ -90,5 +90,14 @@ module.exports = {
             if (err) throw err
             return callback(data)
         })
+    },
+    updateName: async (data) => {
+        let q = `
+        UPDATE users
+        SET name = ?
+        WHERE id = ?`
+        db.query(q, [data.name, data.id],(err, data) => {
+            if (err) throw err
+        })
     }
 }
