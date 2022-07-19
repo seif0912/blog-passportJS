@@ -35,6 +35,7 @@ let initWebRoutes = (app) => {
 
     router.post('/write', loginController.checkLoggedIn, writeController.write)
     router.post('/update-name', loginController.checkLoggedIn, settingsController.updateName)
+    router.post('/update-password', loginController.checkLoggedIn, settingsController.updatePassword)
 
     return app.use("/", router)
 }

@@ -99,5 +99,15 @@ module.exports = {
         db.query(q, [data.name, data.id],(err, data) => {
             if (err) throw err
         })
+    },
+    updatePassword: async (data) => {
+        let q = `
+        UPDATE users
+        SET password = ?
+        WHERE id = ?`
+        let newHashedPassword = await bcrypt.hash(data.newPassword, 10) 
+        db.query(q, [newHashedPassword, data.id],(err, data) => {
+            if (err) throw err
+        })
     }
 }

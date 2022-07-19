@@ -12,8 +12,8 @@ infos.forEach((ele ,index)=>{
     })
 })
 
+// update user name
 let updateName = document.getElementById('update-name')
-
 updateName.onclick = ((e) => {
     e.preventDefault()
     console.log('updatName')
@@ -49,6 +49,47 @@ updateName.onclick = ((e) => {
             result.innerHTML = `<p class='failed'>Wrong password</p>`
             box.appendChild(result)
             document.querySelector("form[name=update-name] input[type=password]").value = ''
+        }
+      });
+
+})
+
+// update password
+let updatePassword = document.getElementById('update-password')
+updatePassword.onclick = ((e) => {
+    e.preventDefault()
+    let oldPassword = document.querySelector("form[name=update-password] input[name=old_password]").value
+    let newPassword = document.querySelector("form[name=update-password] input[name=new_password]").value
+
+    let obj = {oldPassword, newPassword}
+
+    fetch('/update-password', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+      })
+      .then(res => {
+          let box = document.querySelector('.box-con.password')
+
+          let result = document.createElement('div')
+          result.className = 'result'
+          let checkRes = document.querySelector('.result')
+          if(checkRes){
+            box.removeChild(checkRes)
+          }
+        if(res.ok){
+            result.innerHTML = `<p class='success'>Password is updated successfully</p>`
+            box.appendChild(result)
+            document.querySelector("form[name=update-password] input[name=old_password]").value = ''
+            document.querySelector("form[name=update-password] input[name=new_password]").value = ''
+             }else{
+            result.innerHTML = `<p class='failed'>Wrong password</p>`
+            box.appendChild(result)
+            document.querySelector("form[name=update-password] input[name=old_password]").value = ''
+            document.querySelector("form[name=update-password] input[name=new_password]").value = ''
         }
       });
 

@@ -6,8 +6,6 @@ const getSettingsPage = (req, res) =>{
 }
 
 const updateName = async(req, res) => {
-    console.log(req.body)
-    console.log(req.user)
     let match = await loginService.comparePassword(req.body.password, req.user);
     if(match === true){
         model.updateName({name: req.body.name, id: req.user.id})
@@ -17,7 +15,19 @@ const updateName = async(req, res) => {
     }
 }
 
+const updatePassword = async(req, res) => {
+    let match = await loginService.comparePassword(req.body.oldPassword, req.user);
+    if(match === true){
+        
+        model.updatePassword({newPassword: req.body.newPassword, id: req.user.id})
+        return res.status(201).send({passwordUpdated: true})
+    }else{
+        return res.status(401).send({passwordUpdated: false})
+    }
+}
+
 module.exports = {
     getSettingsPage,
-    updateName
+    updateName,
+    updatePassword
 }
