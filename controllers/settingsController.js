@@ -15,10 +15,9 @@ const updateName = async(req, res) => {
     }
 }
 
-const updatePassword = async(req, res) => {
+const updatePassword = async (req, res) => {
     let match = await loginService.comparePassword(req.body.oldPassword, req.user);
     if(match === true){
-        
         model.updatePassword({newPassword: req.body.newPassword, id: req.user.id})
         return res.status(201).send({passwordUpdated: true})
     }else{
@@ -26,8 +25,23 @@ const updatePassword = async(req, res) => {
     }
 }
 
+const deleteAccount = async (req, res)=>{
+    let match = await loginService.comparePassword(req.body.password, req.user)
+    console.log('match: ', match)
+    if (match === true){
+        console.log('deeee')
+        model.deleteAccount(req.user.id, (e) =>{
+            console.log('e: ',e)
+        })
+        req.session.destroy( err => {
+            return res.redirect("/");
+        })
+    }
+}
+
 module.exports = {
     getSettingsPage,
     updateName,
-    updatePassword
+    updatePassword,
+    deleteAccount
 }

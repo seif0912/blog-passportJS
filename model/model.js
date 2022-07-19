@@ -109,5 +109,14 @@ module.exports = {
         db.query(q, [newHashedPassword, data.id],(err, data) => {
             if (err) throw err
         })
+    },
+    deleteAccount: (id, callback)=>{
+        let q = `
+        DELETE FROM users
+        WHERE id = ?`
+        db.query(q, [id], (err, data) => {
+            if(err) throw err
+            return callback(data)
+        })
     }
 }
