@@ -6,16 +6,16 @@ const loginController = require('../controllers/loginController')
 let getIndexPage = (req, res) => {
     posts = model.getAllPosts( posts => {
         console.log(req.user)
-        let userId
+        let myId
         if(req.user){
-            userId = req.user.id
+            myId = req.user.id
         }
-        console.log('userId: ', userId)
+        console.log('myId: ', myId)
         return res.render('index', {
             isLoggedIn: req.isLoggedIn,
             h: 'hello',
             posts,
-            userId
+            myId
         })
 
         

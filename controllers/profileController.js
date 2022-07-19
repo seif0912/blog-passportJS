@@ -1,6 +1,10 @@
 const model = require('../model/model')
 
 let getProfilePage = (req, res) => {
+    let myId
+        if(req.user){
+            myId = req.user.id
+        }
     model.getProfile(req.params.id, profileData => {
         model.getProfilePosts(req.params.id, posts => {
             console.log(profileData[0])
@@ -8,7 +12,8 @@ let getProfilePage = (req, res) => {
                 isLoggedIn: req.isLoggedIn,
                 userId: req.params.id,
                 profileData: profileData[0],
-                posts
+                posts,
+                myId
             })
             
         })

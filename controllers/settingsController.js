@@ -2,7 +2,7 @@ const model = require('../model/model')
 const loginService = require('../services/loginService')
 
 const getSettingsPage = (req, res) =>{
-    res.render('settings', {userId: req.user.id, isLoggedIn: req.isLoggedIn})
+    res.render('settings', {myId: req.user.id, isLoggedIn: req.isLoggedIn})
 }
 
 const updateName = async(req, res) => {
