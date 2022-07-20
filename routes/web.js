@@ -38,6 +38,8 @@ let initWebRoutes = (app) => {
     router.post('/update-password', loginController.checkLoggedIn, settingsController.updatePassword)
     router.post('/delete-account', loginController.checkLoggedIn, settingsController.deleteAccount)
     router.post('/like', loginController.checkLoggedIn, postController.like)
+    router.post('/get-post-likes', loginController.checkLoggedIn, postController.getPostLikes)
+    router.post('/is-liked', loginController.checkLoggedIn, postController.isLiked)
 
     return app.use("/", router)
 }

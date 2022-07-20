@@ -29,7 +29,22 @@ const like = (req, res) => {
     })
 }
 
+let getPostLikes = (req, res) => {
+    model.getPostLikes(req.body.postId, (r)=>{
+        console.log('res: ', r)
+        return res.send({likes: r})
+    })
+}
+
+let isLiked = (req, res)=>{
+    model.isLiked({post_id: req.body.postId, userId: req.user.id}, (r)=>{
+        return res.send({isLiked: r})
+    })
+}
+
 module.exports = {
     getPost,
-    like
+    like,
+    getPostLikes,
+    isLiked
 }

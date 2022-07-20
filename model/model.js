@@ -153,5 +153,26 @@ module.exports = {
             }
 
         })
+    },
+    getPostLikes: (post_id, callback)=>{
+        let q = `
+        SELECT count(post_id) AS likes
+        FROM likes
+        WHERE post_id = ?`
+        db.query(q, [post_id], (err, data) => {
+            if (err) throw err
+            console.log('get: ', data[0].likes)
+            return callback(data[0].likes)
+        })
+    },
+    isLiked: (data, callback)=>{
+        let q = `
+        SELECT *
+        FROM likes
+        WHERE post_id = ? AND user_id = ?`
+        db.query(q, [data.post_id, data.userId], (err, data) => {
+            if (err) throw err
+            return callback(data.length != 0)
+        })
     }
 }

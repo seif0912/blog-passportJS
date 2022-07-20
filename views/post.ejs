@@ -16,10 +16,6 @@
           <p> <%= post.shared_at %> </p>
         </div>
         <div class="like">
-          <!-- <form action="/like" method="post">
-            <button class="like">like</button>
-          </form> -->
-          <h4><%= post.likes %> </h4>
           <i class="fa-regular fa-heart"></i>
         </div>
         <% let p = post.post_id %>
@@ -28,7 +24,25 @@
           console.log(postId)
           let likeBtn = document.querySelector('i.fa-heart')
 
-          likeBtn.onclick = () => {
+
+          fetch('/is-liked', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                postId
+              })
+            }).then(res => res.json())
+            .then(r => {
+              if (r.isLiked) {
+                likeBtn.classList.remove('fa-regular')
+                likeBtn.classList.add('fa-solid')
+              }
+            })
+
+          likeBtn.addEventListener('click', () => {
             if (likeBtn.classList.contains('fa-regular')) {
               likeBtn.classList.remove('fa-regular')
               likeBtn.classList.add('fa-solid')
@@ -39,6 +53,8 @@
             let obj = {
               postId
             }
+
+
             fetch('/like', {
                 method: 'POST',
                 headers: {
@@ -47,9 +63,11 @@
                 },
                 body: JSON.stringify(obj)
               })
-              .then();
+              .then(
 
-          }
+              );
+
+          })
         </script>
       </div>
     </div>
