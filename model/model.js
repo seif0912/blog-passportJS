@@ -10,25 +10,31 @@ module.exports = {
     },
     getAllPosts: (d) => {
         let q = `
-        SELECT u.name, p.post_id, p.title, p.body, p.shared_at, p.likes
+        SELECT u.name, p.post_id, p.title, p.body, p.shared_at, count(l.post_id) AS likes
         FROM posts AS p
         LEFT JOIN users as u
         ON (u.id = p.user_id)
+        left JOIN likes AS l
+        ON (p.post_id = l.post_id)
+        group by p.post_id
         ORDER BY p.shared_at DESC`
         db.query(q, (err, data) => {
             if (err) throw err
+            console.log('posts: ', data)
             return d(data)
         })
     },
     getPost: (id, callback) => {
         let q = `
-        SELECT u.name, u.id, p.post_id, p.title, p.body, p.shared_at, p.likes
+
+        SELECT u.name, u.id, p.post_id, p.title, p.body, p.shared_at, count(l.post_id) AS likes
         FROM posts AS p
         LEFT JOIN users as u
         ON (u.id = p.user_id)
-        WHERE p.post_id = ?
-        ORDER BY p.shared_at DESC`
-        db.query(q, [id],(err, data) => {
+        RIGHT JOIN likes as l
+        ON (p.post_id = l.post_id)
+        WHERE p.post_id = ?`
+        db.query(q, [id, id],(err, data) => {
             if (err) throw err
             return callback(data)
         })
@@ -117,6 +123,35 @@ module.exports = {
         db.query(q, [id], (err, data) => {
             if(err) throw err
             return callback(data)
+        })
+    },
+    like: (data, callback) => {
+        let check = `
+        SELECT *
+        FROM likes
+        WHERE user_id = ? AND post_id = ?`
+        db.query(check, [data.userId, data.postId], (err, rows) => {
+            if (err){
+                console.log(err)
+            }
+            if(rows.length == 0){
+                let q = `
+                INSERT INTO likes(user_name, post_name, user_id, post_id)
+                VALUES(?,?,?,?)`
+                db.query(q, [data.userName, data.postName, data.userId, data.postId], (err, data) => {
+                    if(err) throw err
+                    return callback(data)
+                })
+            }else{
+                let q = `
+                DELETE FROM likes
+                WHERE user_id = ? AND post_id = ?`
+                db.query(q, [data.userId, data.postId], (err, data) => {
+                    if(err) throw err
+                    return callback(data)
+                })
+            }
+
         })
     }
 }

@@ -137,3 +137,12 @@ body{
     margin-top: 15px;
     color: #ddd;
 }
+
+.like{
+    margin-left: 25px;
+}
+
+.like i {
+    cursor: pointer;
+    font-size: 18px;
+}

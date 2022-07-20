@@ -12,6 +12,24 @@ const getPost = (req, res) => {
     })
 }
 
+const like = (req, res) => {
+    console.log(req.user)
+    console.log(req.body)
+    let data = {
+        userName: req.user.name,
+        postName: '',
+        userId: req.user.id,
+        postId: req.body.postId
+    }
+    model.like(data, e => {
+        if (e) {
+            console.log(e)
+        }
+        // return res.statusCode(200)
+    })
+}
+
 module.exports = {
-    getPost
+    getPost,
+    like
 }
