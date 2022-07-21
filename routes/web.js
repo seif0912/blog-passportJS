@@ -6,6 +6,7 @@ const writeController = require('../controllers/writeController')
 const postController = require('../controllers/postController')
 const profileController = require('../controllers/profileController')
 const settingsController = require('../controllers/settingsController')
+const get404Controller = require('../controllers/404Controller')
 const passport = require('passport')
 const initPassportLocal = require("../controllers/passportLocalController")
 
@@ -22,7 +23,7 @@ let initWebRoutes = (app) => {
     router.get('/post/:id', loginController.isLoggedIn, postController.getPost)
     router.get('/profile/:id', loginController.isLoggedIn, profileController.getProfilePage)
     router.get('/profile/:id/settings', loginController.checkLoggedIn, loginController.isAuthorized, settingsController.getSettingsPage)
-
+    
 
     router.post('/register', registerController.register)
     router.post('/login', passport.authenticate('local', {
@@ -41,6 +42,9 @@ let initWebRoutes = (app) => {
     router.post('/get-post-likes', loginController.checkLoggedIn, postController.getPostLikes)
     router.post('/is-liked', loginController.checkLoggedIn, postController.isLiked)
 
+
+
+    router.get('*',loginController.isLoggedIn, get404Controller.get404Page);
     return app.use("/", router)
 }
 module.exports = initWebRoutes
