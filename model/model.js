@@ -36,6 +36,7 @@ module.exports = {
         WHERE p.post_id = ?`
         db.query(q, [id, id],(err, data) => {
             if (err) throw err
+            console.log(data)
             return callback(data)
         })
     },
@@ -55,13 +56,32 @@ module.exports = {
             return callback(data)
         })
     },
-    doesUserExist: (username, callback)=>{
-        let q = `SELECT email FROM users WHERE email = '${username}'`
-        db.query(q, (err, data)=>{
+    doesEmailExist: (username, callback)=>{
+        let q = `SELECT email FROM users WHERE email = ?`
+        db.query(q,[username], (err, data)=>{
             if (err) {
                 console.log(err)
             }
             console.log(data)
+            return callback(data.length != 0)
+        })
+    },
+    doesUserExist: (id, callback)=>{
+        let q = `SELECT * FROM users WHERE id = ?`
+        db.query(q,[id], (err, data)=>{
+            if (err) {
+                console.log(err)
+            }
+            console.log(data)
+            return callback(data.length != 0)
+        })
+    },
+    doesPostExist: (id, callback)=>{
+        let q = `SELECT * FROM posts WHERE post_id = ?`
+        db.query(q,[id], (err, data)=>{
+            if (err) {
+                console.log(err)
+            }
             return callback(data.length != 0)
         })
     },
@@ -89,9 +109,9 @@ module.exports = {
     },
     getProfile: (id, callback) => {
         let q = `
-        SELECT count(post_id) AS total_posts, sum(likes) AS total_likes
+        SELECT count(post_id) AS total_posts, sum(likes) AS total_likes, name
         FROM (
-            SELECT p.post_id, count(l.post_id) AS likes
+            SELECT u.name, p.post_id, count(l.post_id) AS likes
             FROM posts AS p
             LEFT JOIN users as u
             ON (u.id = p.user_id)
@@ -101,7 +121,7 @@ module.exports = {
             group by p.post_id
         ) AS total_posts
         `
-        db.query(q, [id],(err, data) => {
+        db.query(q, [id, id],(err, data) => {
             if (err) throw err
             // console.log(data)
             return callback(data)
