@@ -1,2 +1,16 @@
-<h1>you're not authorized to do such thing.</h1>
-<a href="/">home</a>
+<%- include('components/head.ejs', {page: 'settings', cssSource: '../../css/settings.css'}); %>
+
+<body>
+
+  <%- include('components/header.ejs', {isLoggedIn, myId}); %>
+
+  <div class="write-container">
+    <div class="box" style="text-align: center;">
+      <h1 style="text-transform: capitalize;">you're not authorized</h1>
+      <h3 style="color: #ddd; margin-bottom: 10px;">Dude, we're not playin' around C'mon</h3>
+      <h3 style="color: #ddd; margin-top: 10px;">be nice.</h3>
+    </div>
+
+</body>
+
+</html>
