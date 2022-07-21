@@ -31,7 +31,7 @@ module.exports = {
         FROM posts AS p
         LEFT JOIN users as u
         ON (u.id = p.user_id)
-        RIGHT JOIN likes as l
+        left JOIN likes AS l
         ON (p.post_id = l.post_id)
         WHERE p.post_id = ?`
         db.query(q, [id, id],(err, data) => {
@@ -41,11 +41,14 @@ module.exports = {
     },
     getProfilePosts: (id, callback) => {
         let q = `
-        SELECT p.post_id, p.title, p.body, p.shared_at, p.likes
+        SELECT p.post_id, p.title, p.body, p.shared_at, count(l.post_id) AS likes
         FROM posts AS p
         LEFT JOIN users as u
         ON (u.id = p.user_id)
+        LEFT JOIN likes as l
+        ON (p.post_id = l.post_id)
         WHERE u.id = ?
+        group by p.post_id
         ORDER BY p.shared_at DESC`
         db.query(q, [id],(err, data) => {
             if (err) throw err
@@ -86,14 +89,21 @@ module.exports = {
     },
     getProfile: (id, callback) => {
         let q = `
-        SELECT u.name, count(p.post_id) AS total_posts, sum(p.likes) AS total_likes
-        FROM posts AS p
-        LEFT JOIN users as u
-        ON (u.id = p.user_id)
-        WHERE u.id = ?
+        SELECT count(post_id) AS total_posts, sum(likes) AS total_likes
+        FROM (
+            SELECT p.post_id, count(l.post_id) AS likes
+            FROM posts AS p
+            LEFT JOIN users as u
+            ON (u.id = p.user_id)
+            LEFT JOIN likes as l
+            ON (p.post_id = l.post_id)
+            WHERE u.id = ?
+            group by p.post_id
+        ) AS total_posts
         `
         db.query(q, [id],(err, data) => {
             if (err) throw err
+            // console.log(data)
             return callback(data)
         })
     },
