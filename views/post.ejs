@@ -40,6 +40,8 @@
                 likeBtn.classList.remove('fa-regular')
                 likeBtn.classList.add('fa-solid')
               }
+            }).catch(err => {
+              console.error(err)
             })
 
           likeBtn.addEventListener('click', () => {
@@ -56,16 +58,15 @@
 
 
             fetch('/like', {
-                method: 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(obj)
-              })
-              .then(
-
-              );
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(obj)
+            }).catch(err => {
+              console.error(err)
+            })
 
           })
         </script>
