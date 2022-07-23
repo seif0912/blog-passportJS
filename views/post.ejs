@@ -19,9 +19,9 @@
           <i class="fa-regular fa-heart"></i>
         </div>
         <% let p = post.post_id %>
+        <% let id = myId %>
         <script>
           let postId = <%= p %>;
-          console.log(postId)
           let likeBtn = document.querySelector('i.fa-heart')
 
 
@@ -71,9 +71,65 @@
           })
         </script>
       </div>
+      <% if(post.id == myId) {%>
+      <div class="post-settings">
+        <h3 id="edit-btn">edit</h3>
+        <h3 id="delete-btn">delete</h3>
+
+      </div>
+      <% } %>
     </div>
   </div>
+  <div class="delete">
+    <div class="delete-box">
+      <p>are you sure you want to delete this post</p>
+      <div class="btns">
+        <h3>cancel</h3>
+        <h3>delete</h3>
+      </div>
+    </div>
+  </div>
+  <script>
+    let deleteBtn = document.getElementById('delete-btn')
+    deleteBtn.onclick = () => {
+      let deleteWidget = document.querySelector('.delete')
+      deleteWidget.className = 'delete active'
+      deleteWidget.onclick = () => {
+        deleteWidget.className = 'delete'
+      }
+      let deleteCancel = document.querySelector('.delete .btns h3:first-child')
+      deleteCancel.onclick = () => {
+        deleteWidget.className = 'delete'
+      }
+      let deletePost = document.querySelector('.delete .btns h3:last-child')
+      deletePost.onclick = () => {
+        let id = <%= id %>
+        let post_id = <%= p %>
+        let deleteObj = {
+          id,
+          post_id
+        }
 
+        fetch('/delete-post', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(deleteObj)
+          })
+          .then((e) => {
+            console.log(e)
+            if (e.status == 200) {
+              location.href = e.url
+            }
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      }
+    }
+  </script>
 </body>
 
 </html>

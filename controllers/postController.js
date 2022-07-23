@@ -48,9 +48,31 @@ let isLiked = (req, res)=>{
     })
 }
 
+let deletePost = (req, res)=>{
+    model.doesPostExist(req.body.post_id, ex =>{
+        if(ex){
+            model.getPost(req.body.post_id, post => {
+                if(post[0].id == req.body.id){
+                    console.log('match')
+                    model.deletePost(req.body.post_id, r => {
+                        res.status(200).redirect(`/profile/${req.body.id}`)
+                    })
+                }else{
+                    return res.status(401).send()
+                }
+                
+                
+            })
+        }else{
+            res.status(404).redirect('/404')
+        }
+    })
+}
+
 module.exports = {
     getPost,
     like,
     getPostLikes,
-    isLiked
+    isLiked,
+    deletePost
 }

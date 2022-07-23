@@ -20,7 +20,6 @@ module.exports = {
         ORDER BY p.shared_at DESC`
         db.query(q, (err, data) => {
             if (err) throw err
-            console.log('posts: ', data)
             return d(data)
         })
     },
@@ -36,7 +35,15 @@ module.exports = {
         WHERE p.post_id = ?`
         db.query(q, [id, id],(err, data) => {
             if (err) throw err
-            console.log(data)
+            return callback(data)
+        })
+    },
+    deletePost: (id, callback) => {
+        let q = `
+        DELETE FROM posts
+        WHERE post_id = ?`
+        db.query(q, [id, id],(err, data) => {
+            if (err) throw err
             return callback(data)
         })
     },
@@ -62,7 +69,6 @@ module.exports = {
             if (err) {
                 console.log(err)
             }
-            console.log(data)
             return callback(data.length != 0)
         })
     },
@@ -72,7 +78,6 @@ module.exports = {
             if (err) {
                 console.log(err)
             }
-            console.log(data)
             return callback(data.length != 0)
         })
     },
@@ -191,7 +196,6 @@ module.exports = {
         WHERE post_id = ?`
         db.query(q, [post_id], (err, data) => {
             if (err) throw err
-            console.log('get: ', data[0].likes)
             return callback(data[0].likes)
         })
     },

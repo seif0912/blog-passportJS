@@ -88,6 +88,7 @@ body{
     max-width: 650px;
     min-width: 320px;
     color: white;
+    position: relative;
 }
 
 .box .body{
@@ -148,3 +149,82 @@ body{
     cursor: pointer;
     font-size: 18px;
 }
+
+.post-settings{
+    position: absolute;
+    top: 100%;
+    background-color: rgba(200, 200, 200, 0.95);
+    color: #222;
+    display: flex;
+    right: 0;
+}
+
+.post-settings h3{
+    margin: 0;
+    padding: 5px 15px;
+    transition: .25s;
+}
+
+.post-settings h3:hover{
+    background-color: rgba(150, 150, 150, 0.5);
+    cursor: pointer;
+    color: #111;
+}
+
+/* delete popup */
+
+body{
+    position: relative;
+}
+
+.delete{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color:rgba(17, 17, 17, 0.75);
+    backdrop-filter: blur(2px);
+    top: 0;
+    left: 0;
+    color: white;
+    z-index: 9999999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete.active{
+    display: flex;
+}
+
+.delete .delete-box{
+    background-color: rgba(230, 230, 230, 0.35);
+    padding: 25px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.delete .delete-box p{
+    margin: 0;
+}
+
+.delete .delete-box .btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.delete .delete-box .btns h3{
+    padding: 10px 15px;
+    background-color: #ddd;
+    color: #333;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.delete .delete-box .btns h3:hover{
+    background-color: #eaeaea;
+    color: #111;
+}
+
+/* delete popup | end */
