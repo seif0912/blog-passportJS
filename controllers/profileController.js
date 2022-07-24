@@ -2,8 +2,10 @@ const model = require('../model/model')
 
 let getProfilePage = (req, res) => {
     let myId
+    let myName
         if(req.user){
             myId = req.user.id
+            myName = req.user.name
         }
     console.log(req.params.id)
 
@@ -18,7 +20,8 @@ let getProfilePage = (req, res) => {
                         userId: req.params.id,
                         profileData: profileData[0],
                         posts,
-                        myId
+                        myId,
+                        myName
                     })
                     
                 })

@@ -1,0 +1,46 @@
+<footer>
+  <div class="upper">
+    <% if(isLoggedIn) {%>
+    <div class="isLogged">
+      <h1><%= myName %> </h1>
+      <ul>
+        <li><a class="btn" href="/write">Write</a></li>
+        <li><a class="btn" href="/profile/<%= myId %> ">Profile</a></li>
+        <li><a class="btn" href="/profile/<%= myId %>/settings">settings</a></li>
+      </ul>
+    </div>
+    <% }else{ %>
+    <div class="isntLogged">
+      <h1 class="logo"><a href="/">blog</a></h1>
+      <form action="/register" method="post">
+        <div class="con">
+          <input type="text" name="name" placeholder="Name">
+        </div>
+        <div class="con">
+          <input type="email" name="email" placeholder="Email">
+        </div>
+        <div class="con">
+          <input type="password" name="password" placeholder="Password">
+        </div>
+        <div class="con">
+          <button type="submit">register</button>
+        </div>
+        <!-- <a href="/login">log in</a> -->
+      </form>
+    </div>
+    <% } %>
+  </div>
+  <div class="footer">
+    &copy; all right reserved | developed by <a href="#">Seif Badreddine</a>
+    <ul class="social">
+      <li><a target='_blank' href="https://seif0912.github.io/portfolio/"><i class="fa-solid fa-globe"></i></a></li>
+      <li><a target='_blank' href="https://www.instagram.com/seif_badreddine/"><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a target='_blank' href="https://github.com/seif0912"><i class="fa-brands fa-github"></i></a></li>
+      <li><a target='_blank' href="https://twitter.com/baddredineseif"><i class="fa-brands fa-twitter"></i></a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+
+</html>

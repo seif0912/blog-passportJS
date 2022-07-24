@@ -128,8 +128,19 @@ module.exports = {
         `
         db.query(q, [id, id],(err, data) => {
             if (err) throw err
-            // console.log(data)
-            return callback(data)
+            console.log(data)
+            if(data[0].total_posts == 0){
+                console.log(000000)
+                db.query('SELECT name FROM users WHERE id = ?', [id], (err, d) => {
+                    console.log(d)
+
+                    if (err) throw err
+                    return callback(d)
+                })
+            }else{
+
+                return callback(data)
+            }
         })
     },
     updateName: async (data) => {

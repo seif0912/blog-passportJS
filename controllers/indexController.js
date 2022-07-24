@@ -7,15 +7,18 @@ let getIndexPage = (req, res) => {
     posts = model.getAllPosts( posts => {
         console.log(req.user)
         let myId
+        let myName
         if(req.user){
             myId = req.user.id
+            myName = req.user.name
         }
         console.log('myId: ', myId)
         return res.render('index', {
             isLoggedIn: req.isLoggedIn,
             h: 'hello',
             posts,
-            myId
+            myId,
+            myName
         })
 
         
