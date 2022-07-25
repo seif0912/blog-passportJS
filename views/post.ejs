@@ -88,7 +88,7 @@
           <textarea name="body" placeholder="what's on your mind,?" required><%= post.body %></textarea>
         </div>
         <div class="col">
-          <button type="submit">publish</button>
+          <button class="publish" type="submit">publish</button>
         </div>
       </form>
       <% if(post.id == myId) {%>
@@ -160,7 +160,33 @@
     cancelEdit.onclick = () => {
       document.querySelector('.box.edit.active').classList.remove('active')
       document.querySelector('.box.post').classList.add('active')
-
+    }
+    let publish = document.querySelector('.publish')
+    publish.onclick = (e) => {
+      e.preventDefault()
+      let title = document.querySelector('input[name=title]').value
+      let body = document.querySelector('textarea').value
+      console.log(body)
+      fetch('/edit-post', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            postId,
+            title,
+            body
+          })
+        })
+        .then(res => {
+          if (res.redirected) {
+            window.location.href = res.url
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
     // edit post | end
   </script>

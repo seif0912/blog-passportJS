@@ -69,10 +69,31 @@ let deletePost = (req, res)=>{
     })
 }
 
+let editPost = (req, res) => {
+    console.log(req.body)
+    model.doesPostExist(req.body.postId, exists => {
+        if (exists){
+            model.getPost(req.body.postId, post => {
+                if(post[0].id == req.user.id){
+                    console.log('match')
+                    model.editPost(req.body, r => {
+                        res.status(200).redirect(`/post/${req.body.postId}`)
+                    })
+                }else{
+                    return res.status(401).send()
+                }
+            })
+        }else{
+            return res.status(404).send({msg: 'no such post'})
+        }
+    })
+}
+
 module.exports = {
     getPost,
     like,
     getPostLikes,
     isLiked,
-    deletePost
+    deletePost,
+    editPost
 }

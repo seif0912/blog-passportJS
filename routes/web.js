@@ -43,6 +43,7 @@ let initWebRoutes = (app) => {
     router.post('/get-post-likes', loginController.checkLoggedIn, postController.getPostLikes)
     router.post('/is-liked', loginController.checkLoggedIn, postController.isLiked)
     router.post('/delete-post', loginController.checkLoggedIn, postController.deletePost)
+    router.post('/edit-post', loginController.checkLoggedIn, postController.editPost)
 
 
     router.get('*',loginController.isLoggedIn, get404Controller.get404Page);

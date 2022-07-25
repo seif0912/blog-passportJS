@@ -219,5 +219,15 @@ module.exports = {
             if (err) throw err
             return callback(data.length != 0)
         })
+    },
+    editPost: (data, callback) => {
+        let q = `
+        UPDATE posts
+        SET title = ?, body = ?
+        WHERE post_id = ?`
+        db.query(q, [data.title, data.body, data.postId], (err, data) => {
+            if (err) throw err
+            return callback(data)
+        })
     }
 }
