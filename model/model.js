@@ -182,9 +182,9 @@ module.exports = {
             }
             if(rows.length == 0){
                 let q = `
-                INSERT INTO likes(user_name, post_name, user_id, post_id)
-                VALUES(?,?,?,?)`
-                db.query(q, [data.userName, data.postName, data.userId, data.postId], (err, data) => {
+                INSERT INTO likes(user_name, user_id, post_id)
+                VALUES(?,?,?)`
+                db.query(q, [data.userName, data.userId, data.postId], (err, data) => {
                     if(err) throw err
                     return callback(data)
                 })

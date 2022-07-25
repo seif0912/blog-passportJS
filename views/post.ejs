@@ -5,7 +5,7 @@
   <%- include('components/header.ejs', {isLoggedIn, myId}); %>
 
   <div class="write-container">
-    <div class="box">
+    <div class="box post active">
       <h2> <%= post.title %> </h2>
       <% post.body.forEach(line => { %>
       <p class="body"> <%= line %> </p>
@@ -79,6 +79,24 @@
       </div>
       <% } %>
     </div>
+    <div class="box edit">
+      <form action="">
+        <div class="col">
+          <input type="text" name="title" placeholder="title" value="<%= post.title %>" required>
+        </div>
+        <div class="col">
+          <textarea name="body" placeholder="what's on your mind,?" required><%= post.body %></textarea>
+        </div>
+        <div class="col">
+          <button type="submit">publish</button>
+        </div>
+      </form>
+      <% if(post.id == myId) {%>
+      <div class="post-settings">
+        <h3 id="cancel-btn">cancel</h3>
+      </div>
+      <% } %>
+    </div>
   </div>
   <div class="delete">
     <div class="delete-box">
@@ -90,6 +108,7 @@
     </div>
   </div>
   <script>
+    // delete post
     let deleteBtn = document.getElementById('delete-btn')
     deleteBtn.onclick = () => {
       let deleteWidget = document.querySelector('.delete')
@@ -129,6 +148,21 @@
           })
       }
     }
+    // delete post | end
+
+    // edit post
+    let editBtn = document.getElementById('edit-btn')
+    editBtn.onclick = () => {
+      document.querySelector('.box.post.active').classList.remove('active')
+      document.querySelector('.box.edit').classList.add('active')
+    }
+    let cancelEdit = document.getElementById('cancel-btn')
+    cancelEdit.onclick = () => {
+      document.querySelector('.box.edit.active').classList.remove('active')
+      document.querySelector('.box.post').classList.add('active')
+
+    }
+    // edit post | end
   </script>
 </body>
 

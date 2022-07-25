@@ -82,22 +82,27 @@ body{
     padding-bottom: 50px;
 }
 
-.write-container .box{
+.write-container .box.post{
     background-color: rgba(50, 50, 50, 0.85);
     padding: 30px 20px;
     max-width: 650px;
     min-width: 320px;
     color: white;
     position: relative;
+    display: none;
 }
 
-.box .body{
+.write-container .box.post.active{
+    display:block;
+}
+
+.box.post .body{
     color: #eee;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.box .info{
+.box.post .info{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -105,18 +110,18 @@ body{
     margin-bottom: 5px;
 }
 
-.box .info .nd .name{
+.box.post .info .nd .name{
     margin: 0;
     margin-bottom: 8px;
 }
 
-.box .info .nd .name a{
+.box.post .info .nd .name a{
     position: relative;
     margin: 0;
     color: #eee;
 }
 
-.box .info .nd .name a::before{
+.box.post .info .nd .name a::before{
     content: '';
     position: absolute;
     width: 100%;
@@ -126,16 +131,16 @@ body{
     background-color: #eee;
 }
 
-.box .info .nd .name a i{
+.box.post .info .nd .name a i{
     transition: .3s;
     margin-left: 8px;
 }
 
-.box .info .nd .name:hover a i{
+.box.post .info .nd .name:hover a i{
     margin-left: 20px;
 }
 
-.box .info .nd p{
+.box.post .info .nd p{
     margin: 0;
     margin-top: 15px;
     color: #ddd;
@@ -170,6 +175,99 @@ body{
     cursor: pointer;
     color: #111;
 }
+
+/* edit box */
+
+.box.edit{
+    background-color: rgba(50, 50, 50, 0.85);
+    padding: 30px 20px;
+    max-width: 650px;
+    min-width: 320px;
+    color: white;
+    position: relative;
+    display: none;
+}
+
+.box.edit.active{
+    display: block;
+}
+
+
+.write-container form input{
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: #f1f1f1;
+    color: black;
+    width: 100%;
+}
+
+.write-container form textarea{
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: #f1f1f1;
+    color: black;
+    width: 100%;
+    
+    width: 500px;
+    height: 300px;
+}
+
+.write-container form input:focus{
+    outline: none;
+    background-color: #fafafa;
+}
+.write-container form textarea:focus{
+    outline: none;
+    background-color: #fafafa;
+}
+
+.write-container form button{
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+
+.write-container form a {
+    text-align: center;
+    display: block;
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+    text-decoration: underline;
+}
+
+@media (max-width: 580px){
+    .write-container .box{
+        width: 100vw;
+    }
+    .write-container form textarea{
+        width: 100%;
+    }
+}
+
+@media (max-height: 700px){
+    body{
+        height: 700px;
+    }
+    .write-container{
+        height: 700px;
+    }
+}
+
+/* edit box | end */
 
 /* delete popup */
 
