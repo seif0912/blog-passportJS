@@ -23,7 +23,7 @@ ul {
     padding: 0;
 }
 
-.container {
+.form-container {
     padding-left: 15px;
     padding-right: 15px;
     margin-left: auto;
@@ -45,13 +45,13 @@ body{
     background-position: center;
 }
 
-.container{
+.form-container{
     background-color: rgba(50, 50, 50, 0.85);
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
-.container form input{
+.form-container form input{
     padding: 5px 10px;
     border-radius: 8px;
     border: none;
@@ -62,12 +62,12 @@ body{
     width: 100%;
 }
 
-.container form input:focus{
+.form-container form input:focus{
     outline: none;
     background-color: #fafafa;
 }
 
-.container form button{
+.form-container form button{
     width: 100%;
     padding: 10px 10px;
     border-radius: 8px;
@@ -80,7 +80,7 @@ body{
     background-color: black;
 }
 
-.container form a {
+.form-container form a {
     text-align: center;
     display: block;
     color: white;
@@ -90,7 +90,7 @@ body{
 }
 
 @media (max-width: 500px){
-    .container{
+    .form-container{
         width: 100%;
     }
 }

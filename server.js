@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const initWebRoutes = require('./routes/web')
@@ -34,4 +34,6 @@ app.use(passport.session());
 
 initWebRoutes(app)
 
-app.listen(3000, ()=>console.log('listening...'))
+
+let port = process.env.PORT || 3000
+app.listen(port, ()=>console.log('listening...'))

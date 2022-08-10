@@ -45,7 +45,6 @@ let initWebRoutes = (app) => {
     router.post('/delete-post', loginController.checkLoggedIn, postController.deletePost)
     router.post('/edit-post', loginController.checkLoggedIn, postController.editPost)
 
-
     router.get('*',loginController.isLoggedIn, get404Controller.get404Page);
     return app.use("/", router)
 }
