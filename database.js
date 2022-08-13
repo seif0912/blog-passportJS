@@ -1,3 +1,6 @@
+/*
+connect to mysql database & export the connection 
+*/
 const mysql = require('mysql')
 const conn = mysql.createConnection({
     host: 'localhost',
